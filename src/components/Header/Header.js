@@ -8,7 +8,7 @@ const Header = () => {
       <div>
         <Link to={"/"}>NatureGram</Link>
         <div>
-          <Link to={"/"}>Create New</Link>|<Link to={"/"}>About</Link>
+          <Link to={"/createNew"}>Create New</Link>|<Link to={"/"}>About</Link>
         </div>
       </div>
     </header>
