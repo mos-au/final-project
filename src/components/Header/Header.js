@@ -12,7 +12,9 @@ const Header = () => {
           <input
             type="text"
             placeholder="Searh here..."
-            onChange={(e) => setSearchParams({ title: e.target.value })}
+            onChange={(e) => {
+              setSearchParams({ title: e.target.value });
+            }}
           />
         </div>
         <div>

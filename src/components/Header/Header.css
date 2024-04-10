@@ -16,7 +16,15 @@ header > div {
   align-items: center;
 }
 
+header a {
+  padding: 1rem;
+}
+
 header a:hover {
   background-color: #069874;
   color: white;
+}
+
+.search-input-wrapper {
+  width: 30%;
 }
