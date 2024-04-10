@@ -12,14 +12,17 @@ const PostList = () => {
   }, [page]);
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:5000/posts/" + page);
+    const response = await fetch(
+      `http://localhost:5000/posts?_page=${page}&_per_page=5`
+    );
     const newPosts = await response.json();
+    const { data, last } = newPosts;
 
-    if (!newPosts || newPosts.length <= 0) {
+    if (!data || data.length <= 0 || page === last) {
       setloadIsFinished(true);
     }
 
-    const result = [...posts, ...newPosts];
+    const result = [...posts, ...data];
 
     setTimeout(() => {
       setposts(result);
