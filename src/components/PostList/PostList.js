@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./PostList.css";
+import Post from "../Post/Post";
 
 const PostList = () => {
   const [posts, setposts] = useState([]);
@@ -39,7 +40,7 @@ const PostList = () => {
     <div className="posts-container">
       <div className="posts">
         {posts.map((post) => (
-          <div>{post.title}</div>
+          <Post key={post.postId} post={post} />
         ))}
         <div className="load-more" onMouseEnter={handleNewPage}>
           {loadIsFinished ? "Nothing To Load!" : "Hover To Load More..."}
