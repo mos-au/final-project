@@ -1,10 +1,19 @@
 import React from "react";
 import "./Post.css";
 import { Link } from "react-router-dom";
+import Like from "../Like/Like";
 
 const Post = ({ post, fullPage }) => {
-  const { postId, title, profileImage, imageUrl, description, profileName } =
-    post;
+  const {
+    postId,
+    title,
+    profileImage,
+    imageUrl,
+    description,
+    profileName,
+    likes,
+    isLiked,
+  } = post;
 
   return (
     <div className={"post " + (fullPage && "larger")}>
@@ -20,6 +29,7 @@ const Post = ({ post, fullPage }) => {
         <LinkToPage>
           <div className="title">{title}</div>
         </LinkToPage>
+        <Like likes={likes} isLiked={isLiked} />
       </div>
 
       <LinkToPage>
