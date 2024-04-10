@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./PostList.css";
 import Post from "../Post/Post";
+import { useSearchParams } from "react-router-dom";
 
 const PostList = () => {
   const [posts, setposts] = useState([]);
   const [page, setPage] = useState(1);
   const [loadIsFinished, setloadIsFinished] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     getPosts();
-  }, [page]);
+  }, [page, searchParams]);
 
   const getPosts = async () => {
-    const response = await fetch(
-      `http://localhost:5000/posts?_page=${page}&_per_page=5`
-    );
+    let url = `http://localhost:5000/posts?_page=${page}&_per_page=5`;
+    const title = searchParams.get("title");
+    if (title) {
+      url += `&title=${title}`;
+    }
+    const response = await fetch(url);
     const newPosts = await response.json();
     const { data, last } = newPosts;
 

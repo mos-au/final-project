@@ -1,12 +1,20 @@
 import React from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const Header = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   return (
     <header>
       <div>
         <Link to={"/"}>NatureGram</Link>
+        <div className="search-input-wrapper">
+          <input
+            type="text"
+            placeholder="Searh here..."
+            onChange={(e) => setSearchParams({ title: e.target.value })}
+          />
+        </div>
         <div>
           <Link to={"/createNew"}>Create New</Link>|<Link to={"/"}>About</Link>
         </div>
