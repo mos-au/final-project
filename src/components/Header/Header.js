@@ -7,6 +7,9 @@ const Header = () => {
     <header>
       <div>
         <Link to={"/"}>NatureGram</Link>
+        <div>
+          <Link to={"/"}>Create New</Link>|<Link to={"/"}>About</Link>
+        </div>
       </div>
     </header>
   );

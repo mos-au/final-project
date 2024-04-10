@@ -9,14 +9,14 @@ header {
 }
 
 header > div {
-  width: 10rem;
+  width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-header > div:hover {
+header a:hover {
   background-color: #069874;
   color: white;
 }
