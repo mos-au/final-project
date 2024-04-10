@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  border-bottom: lightgrey 1px solid;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+header > div {
+  width: 10rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header > div:hover {
+  background-color: #069874;
+  color: white;
+}
