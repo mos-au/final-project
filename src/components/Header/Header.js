@@ -16,7 +16,8 @@ const Header = () => {
           />
         </div>
         <div>
-          <Link to={"/createNew"}>Create New</Link>|<Link to={"/"}>About</Link>
+          <Link to={"/createNew"}>Create New</Link>|
+          <Link to={"/about"}>About</Link>
         </div>
       </div>
     </header>
