@@ -43,7 +43,7 @@ const PostList = () => {
     <div className="posts-container">
       <div className="posts">
         {posts.map((post) => (
-          <Post key={post.postId} post={post} />
+          <Post key={post.id} post={post} />
         ))}
         <div className="load-more" onMouseEnter={handleNewPage}>
           {loadIsFinished ? "Nothing To Load!" : "Hover To Load More..."}

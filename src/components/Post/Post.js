@@ -5,7 +5,7 @@ import Like from "../Like/Like";
 
 const Post = ({ post, fullPage }) => {
   const {
-    postId,
+    id,
     title,
     profileImage,
     imageUrl,
@@ -42,7 +42,7 @@ const Post = ({ post, fullPage }) => {
 
   function LinkToPage({ children }) {
     if (fullPage) return children;
-    return <Link to={"/post/" + postId}>{children}</Link>;
+    return <Link to={"/post/" + id}>{children}</Link>;
   }
 };
 

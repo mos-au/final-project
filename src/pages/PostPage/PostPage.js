@@ -12,7 +12,7 @@ const PostPage = () => {
 
   const getPost = async () => {
     const postIdParam = postId ?? "";
-    const response = await fetch("http://localhost:5000/post/" + postIdParam);
+    const response = await fetch(`http://localhost:5000/posts/${postIdParam}`);
     const post = await response.json();
 
     setPost(post);
