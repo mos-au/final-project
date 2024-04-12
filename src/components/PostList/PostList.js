@@ -8,21 +8,17 @@ const PostList = () => {
   const [page, setPage] = useState(1);
   const [loadIsFinished, setloadIsFinished] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    getPosts();
-  }, [page, searchParams]);
-
+  const query = searchParams.get("title");
   useEffect(() => {
     setloadIsFinished(false);
-  }, [searchParams]);
+    getPosts({ reload: true });
+  }, [query]);
 
-  const getPosts = async () => {
-    let url = `http://localhost:5000/posts?_page=${page}&_per_page=5`;
-    const title = searchParams.get("title");
-    if (title) {
-      url += `&title=${title}`;
-    }
+  const getPosts = async ({ reload = false, page = 1 }) => {
+    let url = `http://localhost:5000/posts?${
+      query ? `title=${query}&` : ""
+    }_page=${page}&_per_page=5`;
+    setPage(page);
     const response = await fetch(url);
     const newPosts = await response.json();
     const { data, last } = newPosts;
@@ -31,7 +27,7 @@ const PostList = () => {
       setloadIsFinished(true);
     }
 
-    const result = [...posts, ...data];
+    const result = reload ? data : [...posts, ...data];
 
     setTimeout(() => {
       setposts(result);
@@ -40,8 +36,7 @@ const PostList = () => {
 
   const handleNewPage = () => {
     if (loadIsFinished) return;
-
-    setPage(page + 1);
+    getPosts({ page: page + 1 });
   };
 
   if (!posts) {
