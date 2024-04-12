@@ -13,6 +13,10 @@ const PostList = () => {
     getPosts();
   }, [page, searchParams]);
 
+  useEffect(() => {
+    setloadIsFinished(false);
+  }, [searchParams]);
+
   const getPosts = async () => {
     let url = `http://localhost:5000/posts?_page=${page}&_per_page=5`;
     const title = searchParams.get("title");

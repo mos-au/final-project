@@ -14,6 +14,7 @@ const Header = () => {
             placeholder="Searh here..."
             onChange={(e) => {
               setSearchParams({ title: e.target.value });
+              window.location.reload();
             }}
           />
         </div>
