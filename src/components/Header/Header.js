@@ -17,8 +17,8 @@ const Header = () => {
             }}
           />
         </div>
-        <div>
-          <Link to={"/createNew"}>Create New</Link>|
+        <div className="button-container">
+          <Link to={"/createNew"}>Create New</Link>
           <Link to={"/about"}>About</Link>
         </div>
       </div>

@@ -61,3 +61,10 @@
   max-height: 10rem;
   overflow: auto;
 }
+
+@media (max-width: 576px) {
+  .post {
+    width: auto;
+    margin: 1rem;
+  }
+}
