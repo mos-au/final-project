@@ -16,18 +16,26 @@ const PostList = () => {
 
   const getPosts = async ({ reload = false, page = 1 }) => {
     let url = `http://localhost:5000/posts?${
-      query ? `title=${query}&` : ""
-    }_page=${page}&_per_page=5`;
+      query ? `title_like=${query}&` : ""
+    }_page=${page}&_limit=5`;
     setPage(page);
     const response = await fetch(url);
     const newPosts = await response.json();
-    const { data, last } = newPosts;
 
-    if (!data || data.length <= 0 || page === last) {
+    for (let i = 1; i < newPosts.length; i++) {
+      if (!newPosts[i].imageUrl.startsWith("https")) {
+        const res = await fetch(
+          `http://localhost:5000/files/${newPosts[i].imageUrl}`
+        );
+        const data = await res.blob();
+        newPosts[i].image = data;
+      }
+    }
+    if (!newPosts || newPosts.length <= 0) {
       setloadIsFinished(true);
     }
 
-    const result = reload ? data : [...posts, ...data];
+    const result = reload ? newPosts : [...posts, ...newPosts];
 
     setTimeout(() => {
       setposts(result);
@@ -42,7 +50,6 @@ const PostList = () => {
   if (!posts) {
     return <h1>Loading!!!</h1>;
   }
-
   return (
     <div className="posts-container">
       <div className="posts">

@@ -6,6 +6,7 @@ const CreateNewPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [isLiked, setIsLiked] = useState(false);
+  const [file, setFile] = useState();
   const [hasError, setHasError] = useState(false);
 
   const handleCreateNew = (e) => {
@@ -14,19 +15,31 @@ const CreateNewPage = () => {
       setHasError(true);
       return;
     }
-    const newPost = {
-      profileName: author,
-      title,
-      description,
-      imageUrl: "https://source.unsplash.com/random/640x480?sig=1",
-      profileImage: "https://avatars.githubusercontent.com/u/51633191",
-      isLiked,
-      likes: Math.floor(Math.random() * 9991),
-    };
     setHasError(false);
-    fetch("http://localhost:5000/posts", {
+
+    const formData = new FormData();
+    formData.append("image", file);
+    fetch("http://localhost:5000/upload", {
       method: "POST",
-      body: JSON.stringify(newPost),
+      body: formData,
+    }).then((res) => {
+      const data = res.json().then((data) => {
+        const newPost = {
+          profileName: author,
+          title,
+          description,
+          imageUrl: data.filename,
+          profileImage: "https://avatars.githubusercontent.com/u/51633191",
+          isLiked,
+          likes: Math.floor(Math.random() * 9991),
+        };
+
+        fetch("http://localhost:5000/posts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newPost),
+        });
+      });
     });
   };
 
@@ -55,6 +68,14 @@ const CreateNewPage = () => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+          />
+        </label>
+        <label>
+          Image
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setFile(e.target.files[0])}
           />
         </label>
         <label>
