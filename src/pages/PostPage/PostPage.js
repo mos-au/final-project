@@ -15,6 +15,12 @@ const PostPage = () => {
     const response = await fetch(`http://localhost:5000/posts/${postIdParam}`);
     const post = await response.json();
 
+    if (!post.imageUrl.startsWith("https")) {
+      const res = await fetch(`http://localhost:5000/files/${post.imageUrl}`);
+      const data = await res.blob();
+      post.image = data;
+    }
+
     setPost(post);
   };
 
