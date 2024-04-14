@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./CreateNewPage.css";
+import { useNavigate } from "react-router-dom";
 
 const CreateNewPage = () => {
   const [author, setAuthor] = useState("");
@@ -8,6 +9,7 @@ const CreateNewPage = () => {
   const [isLiked, setIsLiked] = useState(false);
   const [file, setFile] = useState();
   const [hasError, setHasError] = useState(false);
+  const navigate = useNavigate();
 
   const handleCreateNew = (e) => {
     e.preventDefault();
@@ -38,6 +40,8 @@ const CreateNewPage = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newPost),
+        }).then(() => {
+          navigate("/");
         });
       });
     });
