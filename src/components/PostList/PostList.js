@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./PostList.css";
+import styles from "./PostList.module.css";
 import Post from "../Post/Post";
 import { useSearchParams } from "react-router-dom";
 
@@ -51,12 +51,12 @@ const PostList = () => {
     return <h1>Loading!!!</h1>;
   }
   return (
-    <div className="posts-container">
-      <div className="posts">
+    <div className={styles["posts-container"]}>
+      <div className={styles.posts}>
         {posts.map((post) => (
           <Post key={post.id} post={post} />
         ))}
-        <div className="load-more" onMouseEnter={handleNewPage}>
+        <div className={styles["load-more"]} onMouseEnter={handleNewPage}>
           {loadIsFinished ? "Nothing To Load!" : "Hover To Load More..."}
         </div>
       </div>

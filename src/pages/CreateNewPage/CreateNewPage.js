@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./CreateNewPage.css";
+import styles from "./CreateNewPage.module.css";
 import { useNavigate } from "react-router-dom";
 
 const CreateNewPage = () => {
@@ -48,8 +48,8 @@ const CreateNewPage = () => {
   };
 
   return (
-    <div className="container">
-      {hasError && <div className="error">All fields are required</div>}
+    <div className={styles.container}>
+      {hasError && <div className={styles.error}>All fields are required</div>}
       <form>
         <label>
           Author
@@ -74,14 +74,16 @@ const CreateNewPage = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
-        <label>
-          Image
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-        </label>
+        <div>
+          <label>
+            Image
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </label>
+        </div>
         <label>
           Is Liked?
           <input
@@ -90,7 +92,7 @@ const CreateNewPage = () => {
             onChange={(e) => setIsLiked(e.target.checked)}
           />
         </label>
-        <div className="button-wrapper">
+        <div className={styles["button-wrapper"]}>
           <button onClick={handleCreateNew}>Create New</button>
         </div>
       </form>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Like.css";
+import styles from "./Like.module.css";
 
 const Like = (props) => {
   const { size } = props;
@@ -18,7 +18,10 @@ const Like = (props) => {
   return (
     <div className="likes" style={style}>
       {likes}
-      <span onClick={handlLike} className={"heart " + (isLiked ? "red" : "")}>
+      <span
+        onClick={handlLike}
+        className={`${styles.heart} ${isLiked ? styles.red : ""}`}
+      >
         ❤
       </span>
     </div>

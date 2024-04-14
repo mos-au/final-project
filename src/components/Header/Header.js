@@ -1,14 +1,14 @@
 import React from "react";
-import "./Header.css";
+import styles from "./Header.module.css";
 import { Link, useSearchParams } from "react-router-dom";
 
 const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   return (
-    <header>
+    <header className={styles.header}>
       <div>
         <Link to={"/"}>NatureGram</Link>
-        <div className="search-input-wrapper">
+        <div className={styles["search-input-wrapper"]}>
           <input
             type="text"
             placeholder="Search here..."
@@ -17,7 +17,7 @@ const Header = () => {
             }}
           />
         </div>
-        <div className="button-container">
+        <div className={styles["button-container"]}>
           <Link to={"/createNew"}>Create New</Link>
           <Link to={"/about"}>About</Link>
         </div>

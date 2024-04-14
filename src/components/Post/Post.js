@@ -1,5 +1,5 @@
 import React from "react";
-import "./Post.css";
+import styles from "./Post.module.css";
 import { Link } from "react-router-dom";
 import Like from "../Like/Like";
 
@@ -16,15 +16,15 @@ const Post = ({ post, fullPage }) => {
   } = post;
 
   return (
-    <div className={"post " + (fullPage && "larger")}>
+    <div className={`${styles.post} ${fullPage ? styles.larger : ""}`}>
       <LinkToPage>
-        <div className="post-header">
+        <div className={styles["post-header"]}>
           <img src={profileImage} alt={profileName} />
-          <div className="profile-name">{profileName}</div>
+          <div className={styles["profile-name"]}>{profileName}</div>
         </div>
 
         <img
-          className="post-image"
+          className={styles["post-image"]}
           src={
             !post.imageUrl.startsWith("https")
               ? URL.createObjectURL(post.image)
@@ -33,15 +33,19 @@ const Post = ({ post, fullPage }) => {
           alt={title}
         />
       </LinkToPage>
-      <div className="post-title">
+      <div className={styles["post-title"]}>
         <LinkToPage>
-          <div className="title">{title}</div>
+          <div className={styles.title}>{title}</div>
         </LinkToPage>
         <Like likes={likes} isLiked={isLiked} />
       </div>
 
       <LinkToPage>
-        <div className={"post-description " + (fullPage && "showAll")}>
+        <div
+          className={`${styles["post-description"]} ${
+            fullPage ? styles.showAll : ""
+          }`}
+        >
           {description}
         </div>
       </LinkToPage>
