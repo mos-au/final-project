@@ -11,7 +11,7 @@ const Header = () => {
         <div className="search-input-wrapper">
           <input
             type="text"
-            placeholder="Searh here..."
+            placeholder="Search here..."
             onChange={(e) => {
               setSearchParams({ title: e.target.value });
             }}
